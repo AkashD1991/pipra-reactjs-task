@@ -19,7 +19,8 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 const styles = (theme) => ({
     root: {
       margin: 0,
@@ -67,6 +68,13 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column',
       alignItems: 'center',
     },
+
+    paper1: {
+      marginTop: theme.spacing(4),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
     form: {
       width: '100%',
       marginTop: theme.spacing(1),
@@ -77,6 +85,10 @@ const useStyles = makeStyles((theme) => ({
     },
     lable: {
       fontSize: 'small',
+    },
+    dialog: {
+        width: '100%',
+        height: '100%'
     }
   }));
 
@@ -149,11 +161,7 @@ export default function SignUp() {
                     label="Phone Number"
                     data-cy="user-phone"
                     variant="outlined"
-                    // containerStyle={{width:'1220px'}}
-                    // dropdownStyle={{height:'50px'}}
-                    defaultCountry={"ie"}
-                    // value={this.state.phone}
-                    // onChange={this.handlePhoneChange}
+                    defaultCountry={"us"}
                     className={classes.form}
                   />
             <Button
@@ -167,28 +175,31 @@ export default function SignUp() {
             </Button>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              // label="By creating an account, you agree to our Privaccy Policy and Terms of Use"
-              label={<Typography className={classes.lable}>By creating an account, you agree to our Privaccy Policy and Terms of Use</Typography>}
+              // label="By creating an account, You agree to our Privacy Policy and Terms of Use"
+              label={<Typography className={classes.lable}>By creating an account, You agree to our Privacy Policy and Terms of Use</Typography>}
             />
-            <Grid container>
+            <Grid container direction="row">
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  back
+                    {"Back"}
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Continue without an account"}
+                {"Continue without an account"}
                 </Link>
               </Grid>
             </Grid>
-          </form>
-        </div>
-          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Grid container className={classes.paper1}>
+        <Button  variant="contained" color="primary" onClick={handleClickOpen}>
         Click Here
       </Button>
+            </Grid>
+          </form>
+        </div>
           <div>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog fullWidth
+  maxWidth="sm" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
         </DialogTitle>
         <DialogContent>
@@ -198,12 +209,25 @@ export default function SignUp() {
         <TextField
               variant="outlined"
               margin="normal"
-              required
-              id="fname"
-              label="First Name"
-              name="fname"
-              autoComplete="fname"
+              id="resp"
+              label="Please remove an answer to add another"
+              name="resp"
+              autoComplete="resp"
+              fullWidth
             />
+            <Grid container
+  direction="row"
+  // dispaly="flex"
+  justifyContent="flex-start"
+  alignItems="center"
+  >
+            <Typography component="h1" variant="caption">
+            User response
+          </Typography>
+          <IconButton aria-label="close" className={classes.closeButton}>
+            <CloseIcon />
+          </IconButton>
+          </Grid>
         </DialogContent>
         <DialogActions>
           <Button
