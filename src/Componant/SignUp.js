@@ -7,7 +7,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,7 +40,7 @@ const styles = (theme) => ({
         <Typography variant="h6">{children}</Typography>
         {onClose ? (
           <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-            {/* <CloseIcon /> */}
+            <CloseIcon />
           </IconButton>
         ) : null}
       </MuiDialogTitle>
@@ -76,6 +75,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3, 0, 2),
     //   backgroundColor: "#313B54",
     },
+    lable: {
+      fontSize: 'small',
+    }
   }));
 
 export default function SignUp() {
@@ -146,9 +148,13 @@ export default function SignUp() {
                     name="phone"
                     label="Phone Number"
                     data-cy="user-phone"
-                    defaultCountry={"us"}
+                    variant="outlined"
+                    // containerStyle={{width:'1220px'}}
+                    // dropdownStyle={{height:'50px'}}
+                    defaultCountry={"ie"}
                     // value={this.state.phone}
                     // onChange={this.handlePhoneChange}
+                    className={classes.form}
                   />
             <Button
               type="submit"
@@ -161,7 +167,8 @@ export default function SignUp() {
             </Button>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="By creating an account, you agree to our Privaccy Policy and Terms of Use"
+              // label="By creating an account, you agree to our Privaccy Policy and Terms of Use"
+              label={<Typography className={classes.lable}>By creating an account, you agree to our Privaccy Policy and Terms of Use</Typography>}
             />
             <Grid container>
               <Grid item xs>
@@ -177,22 +184,21 @@ export default function SignUp() {
             </Grid>
           </form>
         </div>
-        <Box mt={8}>
-          {/* <Copyright /> */}
-          <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open dialog
+          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Click Here
       </Button>
+          <div>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
         </DialogTitle>
         <DialogContent>
+        <Typography component="h1" variant="h6">
+            Enter Your Specialization
+          </Typography>
         <TextField
               variant="outlined"
               margin="normal"
               required
-              fullWidth
               id="fname"
               label="First Name"
               name="fname"
@@ -212,7 +218,6 @@ export default function SignUp() {
         </DialogActions>
       </Dialog>
     </div>
-        </Box>
       </Container>
       );
     }
