@@ -173,11 +173,19 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
+            <Grid container direction="row">
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               // label="By creating an account, You agree to our Privacy Policy and Terms of Use"
-              label={<Typography className={classes.lable}>By creating an account, You agree to our Privacy Policy and Terms of Use</Typography>}
+              label={<Typography variant="body2" className={classes.lable} mr={2}>By creating an account, You agree to our  
+              <Link className={classes.lable} href="#" variant="body2"> 
+              {"Privacy Policy"}
+              </Link> and <Link className={classes.lable} href="#" variant="body2">
+              {"Terms of Use"}
+          </Link>
+        </Typography>}
             />
+            </Grid>
             <Grid container direction="row">
               <Grid item xs>
                 <Link href="#" variant="body2">
